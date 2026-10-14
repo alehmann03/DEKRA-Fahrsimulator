@@ -1,0 +1,6 @@
+{
+  "name": "Mein erstes Test-Szenario",
+  "version": "1.0",
+  "author": "Albert Lehmann",
+  "description": "Ein Lua-Testskript zur Geschwindigkeitsmessung."
+}
