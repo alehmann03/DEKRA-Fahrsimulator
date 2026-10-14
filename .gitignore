@@ -1,0 +1,22 @@
+# Editor und Betriebssystem
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Temporäre Dateien
+*.log
+*.tmp
+
+# Lua-/Testausgaben
+*.luac
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environments
+.venv/
+venv/
+env/
