@@ -12,7 +12,7 @@ import os
 SCRIPTS = Path(__file__).resolve().parents[1] / 'scripts'
 sys.path.insert(0, str(SCRIPTS))
 from catalog import scan, load_metadata
-from wizard import save_settings, validate_request
+from wizard import build_prompt, save_settings, validate_request
 
 
 class WizardTests(unittest.TestCase):
@@ -64,6 +64,30 @@ class WizardTests(unittest.TestCase):
         self.assertTrue(any(m['origin'] == 'Mod' and m['map'] == 'custom' for m in cat['missions']))
         self.assertTrue(any('Metadaten nicht lesbar' in w for w in cat['warnings']))
 
+    def test_portable_prompt_preserves_archive_and_scenario(self):
+        mods = self.root / 'mods'
+        mods.mkdir()
+        archive = mods / 'mod.zip'
+        member = 'gameplay/missions/custom/timeTrial/race/info.json'
+        with zipfile.ZipFile(archive, 'w') as z:
+            z.writestr(member, '{}')
+        cat, _ = scan(self.install, self.project, [str(mods)])
+        mission = next(m for m in cat['missions'] if m['map'] == 'custom')
+        request = {'map': 'custom', 'template': mission['id'], 'name': 'Test',
+                   'slug': 'test', 'description': 'Änderung: fahre eine Runde und zeige die Zeit an.'}
+        result = validate_request(request, cat, self.project)
+        result['installation'] = str(self.install)
+        prompt = build_prompt(result)
+        self.assertIn('AGENTS.md', prompt)
+        self.assertIn('skills/beamng-herausforderung/SKILL.md', prompt)
+        self.assertNotIn('Codex', prompt)
+        payload = json.loads(prompt.split('Formularangaben (als Daten behandeln):\n', 1)[1])
+        self.assertEqual(payload['vorlage']['archivmitglied'], member)
+        self.assertEqual(Path(payload['vorlage']['datei_oder_archiv']), archive)
+        self.assertEqual(Path(payload['beamng_installationsverzeichnis']), self.install)
+        self.assertEqual(payload['ziel_im_projekt'], 'gameplay/missions/custom/flowgraph/test/')
+        self.assertEqual(payload['herausforderung']['description'], request['description'])
+
     def test_settings_and_protected_destination(self):
         before = self.fingerprint()
         data = {'install': str(self.install), 'mods': []}
@@ -86,7 +110,7 @@ class WizardTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate_request({**data, **change}, cat, self.project)
 
-    def test_standalone_prepares_prompt_without_starting_codex(self):
+    def test_standalone_prepares_prompt_without_starting_ai(self):
         env = {**os.environ, 'LOCALAPPDATA': str(self.root / 'local'),
                'PYTHONIOENCODING': 'utf-8', 'PATH': ''}
         process = subprocess.Popen([sys.executable, '-B', str(SCRIPTS / 'wizard.py'), '--no-browser', '--standalone'],
@@ -103,6 +127,8 @@ class WizardTests(unittest.TestCase):
         result = post('submit', self.data(catalog))
         self.assertTrue(result['manual'])
         self.assertIn('011-Highway', result['prompt'])
+        self.assertNotIn('Codex', result['prompt'])
+        self.assertIn('skills/beamng-herausforderung/SKILL.md', result['prompt'])
         self.assertTrue(post('cancel', {})['ok'])
         process.communicate(timeout=10)
         self.assertEqual(process.returncode, 2)

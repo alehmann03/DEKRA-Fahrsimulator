@@ -13,9 +13,8 @@ Spielinhalte; Änderungen an Missionen erfolgen nur im Projekt.
 
 Die Person startet `Herausforderung starten.vbs` im Skill-Ordner per Explorer.
 Die Eingabemaske läuft unabhängig vom Chat und bereitet den Auftrag zur Übergabe
-vor. Das automatische Anlegen eines App-Chats ist noch nicht angebunden; der
-Auftrag muss in einen neuen Codex-Chat des Projekts eingefügt werden.
-Nicht behaupten, dass ein KI-Lauf gestartet oder ein Chat erstellt wurde.
+vor. Die Person kopiert ihn in das gewählte KI-Werkzeug, in dem der
+Projektordner geöffnet ist. Das Formular startet keinen KI-Lauf.
 Voraussetzungen stehen in README.md.
 
 Wenn bereits strukturierte Eingaben aus der Maske vorliegen, öffne die Maske
@@ -96,5 +95,6 @@ Du bist der wartende Agent und führst den nächsten Schritt selbst aus.
 Einrichtung, Datenquellen und Grenzen stehen in [README.md](README.md).
 Falls lokale Ausführung oder Ergebnisübernahme nicht möglich ist: offen sagen
 und dieselbe Karten-, kategorisierte Vorlagen- und Beschreibungsabfrage im Chat
-anbieten. Nie eine tatsächlich nicht verfügbare grafische Sitzung behaupten.
-Dieser Skill ist keine autonom laufende KI und benötigt keine API-Zugangsdaten.
+anbieten. Wenn die Plattform Skills nicht automatisch erkennt, diese Datei
+als normale Projektanweisung lesen. Fehlenden Zugriff auf Dateien, Programme
+oder BeamNG ausdrücklich melden. Dieser Skill ist keine autonom laufende KI.

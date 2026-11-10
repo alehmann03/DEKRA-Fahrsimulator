@@ -9,8 +9,8 @@ Keine Python-Zusatzpakete, Cloud-Dienste oder API-Schlüssel erforderlich.
 Starte im Windows-Explorer **Herausforderung starten.vbs** in diesem Ordner
 per Doppelklick. Die Maske öffnet sich im Browser und funktioniert unabhängig
 von einem laufenden Chat. Nach der Eingabe bereitet die Maske einen Auftrag
-vor. Das automatische Erstellen eines Chats ist noch nicht angebunden: Den
-Auftrag kopieren und in einen neuen Codex-Chat dieses Projekts einfügen.
+vor. Den Auftrag kopieren und in das gewünschte KI-Werkzeug einfügen, nachdem
+der Projektordner dort geöffnet wurde.
 Die Eingabe selbst startet keinen KI-Lauf. `assets/index.html` nicht direkt öffnen.
 
 Die AGENTS.md verweist ebenfalls darauf. Bei Plattformen mit Skill-Verwaltung
@@ -34,9 +34,12 @@ Im externen Browserfenster:
 4. Namen, Ablauf und gewünschte Änderungen beschreiben.
 5. Übersicht prüfen und **Auftrag vorbereiten** wählen.
 
-Die Maske erstellt keinen Codex-Chat und führt den Auftrag nicht selbst aus.
-Die kopierten Angaben sind erst nach dem Einfügen und Absenden im Chat an
-Codex übergeben. Das Fenster offen lassen, bis der Auftrag kopiert wurde.
+Die Maske führt den Auftrag nicht selbst aus. Die kopierten Angaben sind erst
+nach dem Einfügen und Absenden an das gewählte KI-Werkzeug übergeben. Das
+Fenster offen lassen, bis der Auftrag kopiert wurde. Das Werkzeug muss die
+Projektdateien lesen und für die Umsetzung bearbeiten können. Bei fehlenden
+Berechtigungen oder nicht unterstützten Skills die Datei `SKILL.md` ausdrücklich
+bereitstellen; Grenzen und offene Prüfungen nicht als erledigt darstellen.
 
 **Abbrechen** beendet die Sitzung ohne Entwicklungsauftrag. Nur das Fenster zu
 schließen beendet den wartenden Prozess nicht: URL erneut öffnen und abbrechen
@@ -45,8 +48,8 @@ Falls kein Browser startet, öffne die ausgegebene lokale URL. Mit `--no-browser
 kann der automatische Browserstart unterdrückt werden.
 
 Wenn die Verbindung im Browser unterbrochen ist (zum Beispiel nach dem Beenden
-der zugehörigen lokalen Sitzung), starte den Skill im KI-Chat erneut und
-verwende das neu geöffnete Fenster oder den neuen Link. Ein älteres Fenster
+der zugehörigen lokalen Sitzung), starte das Entwicklungstool im Explorer
+erneut und verwende das neu geöffnete Fenster oder den neuen Link. Ein älteres Fenster
 ist nicht automatisch mit der neuen Sitzung verbunden. Der zuvor gespeicherte
 Installationspfad wird beim Neustart erneut geladen; eine erneute Eingabe ist
 nur bei ungültigem Pfad oder einer bewussten Änderung nötig.

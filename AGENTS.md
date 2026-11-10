@@ -1,6 +1,6 @@
 # Projektverzeichnisse
 
-- `C:\Users\alber\AppData\Local\BeamNG\BeamNG.drive\current\mods\unpacked\DEKRA-Fahrsimulator` ist der Projektordner im Mod-Verzeichnis von BeamNG.drive. Hier finden alle Programmieraufgaben statt.
+- Der geöffnete Git-Projektordner `DEKRA-Fahrsimulator` ist der Projektordner im Mod-Verzeichnis von BeamNG.drive. Hier finden alle Programmieraufgaben statt. Auf Alberts Rechner liegt er aktuell unter `C:\Users\alber\AppData\Local\BeamNG\BeamNG.drive\current\mods\unpacked\DEKRA-Fahrsimulator`; auf anderen Rechnern kann der Pfad abweichen.
 - `C:\Users\alber\OneDrive\Dokumente\02_Arbeit\DEKRA\Fahrsimulator` dient zur Ablage von Präsentationen, Word-Dokumenten und anderen Dateien, die nicht zum Coding gehören.
 - `C:\Users\alber\Dokumente lokal\Projektplanung` dient ausschließlich der Organisation.
 
@@ -8,10 +8,10 @@ Diese Zuordnung gilt für das gesamte Projekt. Beachte bei konkreten Aufgaben ab
 
 # BeamNG.drive als Referenz
 
-- Das gesamte Installationsverzeichnis `C:\Program Files (x86)\Steam\steamapps\common\BeamNG.drive` darf als Referenz für die Entwicklung gelesen werden. Nutze bei Bedarf vorhandene Inhalte, Dateien und Beispiele, um Herausforderungen bestmöglich umzusetzen; ein vorheriges Kopieren nach `_references` ist dafür nicht erforderlich.
+- Das gesamte BeamNG.drive-Installationsverzeichnis darf als Referenz für die Entwicklung gelesen werden. Auf Alberts Rechner liegt es aktuell unter `C:\Program Files (x86)\Steam\steamapps\common\BeamNG.drive`; auf anderen Rechnern kann der Pfad abweichen. Verwende den im Auftrag angegebenen lokalen Pfad und prüfe ihn; fehlt er oder ist er unzugänglich, frage nach. Ein vorheriges Kopieren nach `_references` ist nicht erforderlich.
 - Originale Herausforderungen befinden sich dort unter `gameplay/missions/<Karte>/<Kategorie>/<Name_der_Herausforderung>/`. Wenn eine Vorlage mit Karte und Namen genannt wird, suche sie für die entsprechende Karte über die Kategorien hinweg, beispielsweise `011-Highway` für West Coast USA unter `gameplay/missions/west_coast_usa/<Kategorie>/011-Highway/`. Berücksichtige bei der lesenden Suche auch Inhalte in Archiven des Installationsverzeichnisses.
 - Oberste Priorität: Das Installationsverzeichnis und alle darin enthaltenen Dateien und Ordner dürfen unter keinen Umständen verändert werden. Dort ausschließlich lesend zugreifen: nichts erstellen, bearbeiten, löschen, verschieben oder überschreiben und keine Werkzeuge oder Befehle ausführen, die dort Änderungen verursachen könnten. Dies gilt auch für indirekte Änderungen und temporäre Dateien.
-- Die Entwicklung und alle Änderungen am Code und an den zugehörigen Projektdateien erfolgen ausschließlich im Projektordner `C:\Users\alber\AppData\Local\BeamNG\BeamNG.drive\current\mods\unpacked\DEKRA-Fahrsimulator`. Inhalte aus dem Installationsverzeichnis dürfen bei Bedarf lesend als Vorlage genutzt oder in den Projektordner kopiert und ausschließlich dort bearbeitet werden.
+- Die Entwicklung und alle Änderungen am Code und an den zugehörigen Projektdateien erfolgen ausschließlich im geöffneten Projektordner `DEKRA-Fahrsimulator`. Inhalte aus dem Installationsverzeichnis dürfen bei Bedarf lesend als Vorlage genutzt oder in den Projektordner kopiert und ausschließlich dort bearbeitet werden.
 
 # Herausforderungen
 
