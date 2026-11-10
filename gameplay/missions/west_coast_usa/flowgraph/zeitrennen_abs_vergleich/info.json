@@ -1,0 +1,137 @@
+{
+  "additionalAttributes": {},
+  "author": "DEKRA",
+  "careerSetup": {
+    "defaultStarKeys": [],
+    "showInFreeroam": true,
+    "skill": "(none)",
+    "starOutroTexts": {},
+    "starRewards": {},
+    "starsActive": {},
+    "showInCareer": false
+  },
+  "customAdditionalAttributes": {},
+  "date": 1691415998,
+  "description": "Fahre dieselbe Strecke zweimal – zuerst mit aktiviertem ABS, anschließend mit deaktiviertem ABS. Vergleiche deine Rundenzeiten und erlebe den Unterschied im Fahrverhalten.",
+  "devMission": false,
+  "grouping": {
+    "id": "",
+    "label": ""
+  },
+  "layers": [
+    {
+      "dir": "/gameplay/missions/west_coast_usa/flowgraph/zeitrennen_abs_vergleich/",
+      "fixed": true,
+      "isMissionFolderDir": true,
+      "isMissionTypeDir": false
+    },
+    {
+      "dir": "/gameplay/missionTypes/timeTrial/",
+      "fixed": true,
+      "isMissionFolderDir": false,
+      "isMissionTypeDir": true
+    }
+  ],
+  "missionType": "timeTrial",
+  "missionTypeData": {
+    "allowFlip": true,
+    "allowRecover": true,
+    "allowRollingStart": false,
+    "bronze1Laps": -1,
+    "bronze2Laps": -1,
+    "bronze3Laps": -1,
+    "bronzeDynamicLapTimeBase": 10,
+    "bronzeDynamicLapTimePerLap": 40,
+    "bronzeTime": 180,
+    "bronzeTime2": 175,
+    "bronzeTime3": 170,
+    "bronzeTimePenalty": 20,
+    "bronzeTimeTotal": 180,
+    "canChangeLapAmount": false,
+    "closed": true,
+    "defaultLaps": 1,
+    "dynamicRewardsExponentForLaps": 1,
+    "flipLimit": -1,
+    "flipPenalty": 5,
+    "gold1Laps": -1,
+    "gold2Laps": -1,
+    "gold3Laps": -1,
+    "goldDynamicLapTimeBase": 6,
+    "goldDynamicLapTimePerLap": 30,
+    "goldTime": 60,
+    "goldTime2": 55,
+    "goldTime3": 50,
+    "goldTimePenalty": 0,
+    "goldTimeTotal": 60,
+    "justFinishPenalty": 30,
+    "lapTime1": 120,
+    "lapTime2": 105,
+    "lapTime3": 96,
+    "lapTime4": 92,
+    "lapTime5": 90,
+    "mapPreviewMode": "navgraph",
+    "recoverLimit": -1,
+    "recoverPenalty": 5,
+    "reversible": false,
+    "silver1Laps": -1,
+    "silver2Laps": -1,
+    "silver3Laps": -1,
+    "silverDynamicLapTimeBase": 8,
+    "silverDynamicLapTimePerLap": 35,
+    "silverTime": 120,
+    "silverTime2": 115,
+    "silverTime3": 110,
+    "silverTimePenalty": 10,
+    "silverTimeTotal": 120,
+    "startScreenText": "",
+    "customFlowgraph": true
+  },
+  "name": "ABS-Vergleich",
+  "retryBehaviour": "infiniteRetries",
+  "setupModules": {
+    "environment": {
+      "cloudCover": 0.73920001602172,
+      "cloudWindSpeed": 0.5,
+      "enabled": true,
+      "fogDensity": 0.0008,
+      "time": -1,
+      "timeScale": 0,
+      "todUserSetting": true,
+      "weatherUserSetting": false,
+      "windDirAngle": 0,
+      "windSpeed": 0
+    },
+    "traffic": {
+      "enabled": false
+    },
+    "vehicles": {
+      "enabled": true,
+      "includePlayerVehicle": true,
+      "playerVehicleDiffs": {},
+      "prioritizePlayerVehicle": true,
+      "vehicles": {}
+    }
+  },
+  "startCondition": {
+    "type": "automatic"
+  },
+  "startTrigger": {
+    "level": "west_coast_usa",
+    "pos": [
+      -656.71374511719,
+      130.57403564453,
+      118.52442932129
+    ],
+    "radius": 4,
+    "rot": [
+      0.001598946323426,
+      -0.003643164211372,
+      -0.35507530416438,
+      0.93482910038605
+    ],
+    "type": "coordinates"
+  },
+  "visibleCondition": {
+    "type": "always"
+  }
+}
