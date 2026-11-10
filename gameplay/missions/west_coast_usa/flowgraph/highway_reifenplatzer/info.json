@@ -53,6 +53,7 @@
     }
   ],
   "missionType": "timeTrial",
+  "missionTypeLabel": "DEKRA",
   "missionTypeData": {
     "allowFlip": true,
     "allowRecover": true,
