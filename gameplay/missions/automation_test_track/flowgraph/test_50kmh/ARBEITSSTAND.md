@@ -1,0 +1,7 @@
+# Test_50kmh
+
+Zeitrennen auf Basis der Originalmission `automation_test_track/timeTrial/009-Short`. Strecke, Auswahlmöglichkeiten, Start, Ziel und Zeitvorgaben bleiben unverändert. Das Spielerfahrzeug erhält während der Mission den temporären 50-km/h-Begrenzer des serienmäßigen Fahrzeugcontrollers; ein vorher aktiver niedrigerer temporärer Grenzwert bleibt erhalten. Bei Missionsende oder Fahrzeugwechsel wird versucht, den ursprünglichen temporären Zustand wiederherzustellen. Nach einem Fahrzeug-Reset wird der Begrenzer erneut aktiviert. Unterstützt der Fahrzeugcontroller die Funktion nicht, wird die Mission abgebrochen.
+
+Der BeamNG-Regler begrenzt die Antriebsleistung anhand der Radgeschwindigkeit und bremst nicht aktiv. Bei Gefälle, durch Anstöße, Schlupf oder zeitverzögerte Regelung sind Überschreitungen möglich; dies ist keine physikalisch harte Geschwindigkeitsgrenze. Fahrzeugwechsel, Neuladen oder Verlust können die Wiederherstellung beeinflussen. Die unveränderten Zeitvorgaben sind mit dem Begrenzer möglicherweise nicht erreichbar.
+
+**Spieltest offen:** Sichtbarkeit auf der Karte und in der DEKRA-Kachel, gemeinsame Vorschau, Start in beiden Richtungen und mit fliegendem Start, Reglerwirkung bei verschiedenen Fahrzeugen, Reset/Recovery, Wechsel, Abbruch, Neustart, Ziel und Wiederherstellung des vorherigen Zustands. Die Lua-Ausführung und das Verhalten im Spiel konnten noch nicht geprüft werden.
