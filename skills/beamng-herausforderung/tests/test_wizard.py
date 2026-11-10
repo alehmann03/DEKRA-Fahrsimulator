@@ -11,8 +11,8 @@ import os
 
 SCRIPTS = Path(__file__).resolve().parents[1] / 'scripts'
 sys.path.insert(0, str(SCRIPTS))
-from catalog import scan, load_metadata
-from wizard import build_prompt, save_settings, validate_request
+from catalog import scan, scan_project, load_metadata
+from wizard import build_prompt, save_settings, validate_edit_request, validate_request
 
 
 class WizardTests(unittest.TestCase):
@@ -88,6 +88,41 @@ class WizardTests(unittest.TestCase):
         self.assertEqual(payload['ziel_im_projekt'], 'gameplay/missions/custom/flowgraph/test/')
         self.assertEqual(payload['herausforderung']['description'], request['description'])
 
+    def test_edit_catalog_and_prompt_use_project_mission_only(self):
+        base = self.project / 'gameplay/missions/west_coast_usa/flowgraph'
+        marked = base / 'original'
+        marked.mkdir(parents=True)
+        (marked / 'info.json').write_text(json.dumps({'name': 'Eigene Übung', 'author': 'DEKRA',
+                                                       'missionTypeLabel': 'DEKRA'}), encoding='utf-8')
+        (marked / 'preview.jpg').write_bytes(b'preview')
+        unmarked = base / 'unmarked'
+        unmarked.mkdir()
+        (unmarked / 'info.json').write_text(json.dumps({'name': 'Ohne Kennzeichnung', 'author': 'DEKRA'}))
+        bad = base / 'bad'
+        bad.mkdir()
+        (bad / 'info.json').write_text('nicht-json')
+        cat, images = scan_project(self.project)
+        self.assertEqual(len(cat['missions']), 1)
+        self.assertTrue(images)
+        self.assertTrue(cat['warnings'])
+        mission = cat['missions'][0]
+        self.assertEqual(mission['virtual'], 'gameplay/missions/west_coast_usa/flowgraph/original/info.json')
+        description = 'Die Geschwindigkeit begrenzen und alle übrigen Funktionen beibehalten.'
+        result = validate_edit_request({'mission': mission['id'], 'description': description}, cat, self.project)
+        result['installation'] = None
+        prompt = build_prompt(result)
+        self.assertIn('skills/beamng-herausforderung-bearbeiten/SKILL.md', prompt)
+        self.assertNotIn('Codex', prompt)
+        payload = json.loads(prompt.split('Formularangaben (als Daten behandeln):\n', 1)[1])
+        self.assertEqual(payload['missionsdatei_im_projekt'], mission['virtual'])
+        self.assertEqual(payload['gewuenschte_aenderung'], description)
+        self.assertIsNone(payload['beamng_installationsverzeichnis'])
+        with self.assertRaises(ValueError):
+            validate_edit_request({'mission': '../outside/info.json', 'description': description}, cat, self.project)
+        (marked / 'info.json').write_text('{}')
+        with self.assertRaises(ValueError):
+            validate_edit_request({'mission': mission['id'], 'description': description}, cat, self.project)
+
     def test_settings_and_protected_destination(self):
         before = self.fingerprint()
         data = {'install': str(self.install), 'mods': []}
@@ -130,6 +165,35 @@ class WizardTests(unittest.TestCase):
         self.assertNotIn('Codex', result['prompt'])
         self.assertIn('skills/beamng-herausforderung/SKILL.md', result['prompt'])
         self.assertTrue(post('cancel', {})['ok'])
+        process.communicate(timeout=10)
+        self.assertEqual(process.returncode, 2)
+
+    def test_edit_http_handoff_without_installation(self):
+        mission = self.project / 'gameplay/missions/italy/flowgraph/uebung'
+        mission.mkdir(parents=True)
+        (mission / 'info.json').write_text(json.dumps({'name': 'Test', 'missionTypeLabel': 'DEKRA'}))
+        env = {**os.environ, 'LOCALAPPDATA': str(self.root / 'local'), 'PYTHONIOENCODING': 'utf-8',
+               'PYTHONPATH': str(SCRIPTS)}
+        code = ('import pathlib, sys, wizard; wizard.PROJECT=pathlib.Path(sys.argv[1]); '
+                'sys.argv=[sys.argv[0],"--no-browser","--standalone"]; raise SystemExit(wizard.main())')
+        process = subprocess.Popen([sys.executable, '-B', '-c', code, str(self.project)],
+                                   stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', env=env)
+        self.addCleanup(lambda: process.kill() if process.poll() is None else None)
+        url = process.stdout.readline().strip().split('=', 1)[1]
+        with urllib.request.urlopen(url + 'project-missions', timeout=10) as response:
+            catalog = json.load(response)
+        self.assertEqual(len(catalog['missions']), 1)
+        request = {'mode': 'edit', 'mission': catalog['missions'][0]['id'],
+                   'description': 'Bitte die Anzeigen verbessern und die übrige Funktion beibehalten.'}
+        submit = urllib.request.Request(url + 'submit', json.dumps(request).encode(), {'Content-Type': 'application/json'})
+        with urllib.request.urlopen(submit, timeout=10) as response:
+            result = json.load(response)
+        self.assertTrue(result['manual'])
+        self.assertIn('skills/beamng-herausforderung-bearbeiten/SKILL.md', result['prompt'])
+        self.assertIn('gameplay/missions/italy/flowgraph/uebung/info.json', result['prompt'])
+        cancel = urllib.request.Request(url + 'cancel', b'{}', {'Content-Type': 'application/json'})
+        with urllib.request.urlopen(cancel, timeout=10):
+            pass
         process.communicate(timeout=10)
         self.assertEqual(process.returncode, 2)
 

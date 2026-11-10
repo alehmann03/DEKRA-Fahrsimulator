@@ -25,7 +25,10 @@ aus dem Repository starten:
 python -B skills/beamng-herausforderung/scripts/wizard.py
 ```
 
-Im externen Browserfenster:
+Im externen Browserfenster zuerst zwischen **Neue Herausforderung** und
+**Eigene Herausforderung bearbeiten** wählen.
+
+Für eine neue Herausforderung:
 
 1. Beim ersten Mal Installationspfad eintragen (Ordner mit `content` und `gameplay`).
 2. Optional zusätzliche Mod-Verzeichnisse angeben, zum Beispiel den `mods`-Ordner
@@ -33,6 +36,20 @@ Im externen Browserfenster:
 3. Karte und kategorisierte Vorlage auswählen.
 4. Namen, Ablauf und gewünschte Änderungen beschreiben.
 5. Übersicht prüfen und **Auftrag vorbereiten** wählen.
+
+Für eine bestehende Herausforderung:
+
+1. Eine nach Karte gruppierte DEKRA-Herausforderung im Projekt auswählen.
+2. Die gewünschten Änderungen und gegebenenfalls zu erhaltendes Verhalten beschreiben.
+3. Die Übersicht prüfen und den vorbereiteten Auftrag kopieren.
+
+Die Liste enthält ausschließlich Projektmissionen, deren `info.json` das Feld
+`missionTypeLabel: "DEKRA"` enthält. Fehlt die Kennzeichnung oder kann eine
+Datei nicht gelesen werden, wird die Mission nicht automatisch aufgenommen;
+ungültige Metadaten werden als Hinweis angezeigt. Die Bearbeitungsauswahl
+benötigt keine BeamNG-Installation, ein gespeicherter Installationspfad wird
+falls vorhanden an den Auftrag übergeben. Der Bearbeitungsauftrag verweist auf
+`skills/beamng-herausforderung-bearbeiten/SKILL.md`.
 
 Die Maske führt den Auftrag nicht selbst aus. Die kopierten Angaben sind erst
 nach dem Einfügen und Absenden an das gewählte KI-Werkzeug übergeben. Das

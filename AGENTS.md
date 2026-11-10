@@ -29,4 +29,5 @@ Diese Zuordnung gilt für das gesamte Projekt. Beachte bei konkreten Aufgaben ab
 # Projekt-Skill
 
 - Für die geführte Entwicklung einer neuen Herausforderung nutze `skills/beamng-herausforderung/SKILL.md`. Der Skill startet eine lokale Browser-Eingabemaske für Karte, Vorlage und Szenariobeschreibung.
+- Für Änderungen an bestehenden DEKRA-Herausforderungen nutze `skills/beamng-herausforderung-bearbeiten/SKILL.md`. Wähle die Mission über ihren eindeutigen Projektpfad aus und erhalte ihre Identität und das nicht betroffene Verhalten.
 - Bei KI-Plattformen ohne automatische Skill-Erkennung die genannte Datei ausdrücklich lesen. Einrichtung und technische Voraussetzungen stehen in `skills/beamng-herausforderung/README.md`.

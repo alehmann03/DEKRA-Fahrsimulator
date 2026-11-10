@@ -37,6 +37,53 @@ def installation(path):
     return root
 
 
+def scan_project(project):
+    """Find editable, explicitly marked project missions without needing BeamNG."""
+    project = Path(project).resolve()
+    base = project / 'gameplay' / 'missions'
+    missions, images, warnings = [], {}, []
+    if not base.exists():
+        return {'missions': missions, 'warnings': ['Im Projekt gibt es noch keinen Missionsordner.']}, images
+    if base.is_symlink() or project not in base.resolve().parents:
+        raise ValueError('Der Missionsordner liegt außerhalb des Projektordners.')
+
+    def failed(error):
+        warnings.append(f'Projektdatei nicht lesbar: {error}')
+
+    for directory, dirs, names in os.walk(base, followlinks=False, onerror=failed):
+        dirs[:] = [d for d in dirs if not Path(directory, d).is_symlink()
+                   and not (hasattr(Path(directory, d), 'is_junction') and Path(directory, d).is_junction())]
+        info = Path(directory) / 'info.json'
+        if 'info.json' not in names or info.is_symlink():
+            continue
+        relative = info.relative_to(project).as_posix()
+        match = re.fullmatch(r'gameplay/missions/([^/]+)/([^/]+)/([^/]+)/info.json', relative)
+        if not match or project not in info.resolve().parents:
+            continue
+        try:
+            data = load_metadata(read_ref({'path': str(info)}))
+            if not isinstance(data, dict):
+                raise ValueError('Metadaten müssen ein Objekt sein.')
+        except (ValueError, OSError) as error:
+            warnings.append(f'Metadaten nicht lesbar: {relative}: {error}')
+            continue
+        if data.get('missionTypeLabel') != 'DEKRA':
+            continue
+        image_id = None
+        for filename in ('preview.jpg', 'preview.png', 'preview.jpeg', 'thumbnail.jpg', 'thumbnail.png'):
+            image = Path(directory) / filename
+            if image.is_file() and not image.is_symlink() and project in image.resolve().parents:
+                image_id = str(len(images))
+                images[image_id] = {'path': str(image), 'mime': 'image/png' if filename.endswith('.png') else 'image/jpeg'}
+                break
+        missions.append({'id': relative, 'map': match[1], 'category': match[2],
+                         'name': match[3], 'title': data.get('name') or match[3],
+                         'description': data.get('description') or '', 'origin': 'Projekt',
+                         'virtual': relative, 'image': image_id})
+    return {'missions': sorted(missions, key=lambda m: (m['map'].lower(), str(m['title']).lower(), m['virtual'])),
+            'warnings': warnings}, images
+
+
 def scan(install, project, mods=()):
     install = installation(install)
     project = Path(project).resolve()
