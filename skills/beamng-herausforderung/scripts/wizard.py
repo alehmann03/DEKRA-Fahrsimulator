@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import re
 import secrets
+import sys
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlsplit
@@ -65,6 +66,7 @@ def validate_request(data, catalog, project):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--no-browser', action='store_true')
+    parser.add_argument('--standalone', action='store_true')
     args = parser.parse_args()
     settings_file = config_path()
     try:
@@ -153,6 +155,16 @@ def main():
                             raise ValueError('Sitzung nicht bereit.')
                         result = validate_request(data, state['catalog'], PROJECT)
                         result['installation'] = state['settings']['install']
+                        if args.standalone:
+                            prompt = ('Entwickle eine neue BeamNG-Herausforderung anhand der folgenden Angaben. '
+                                      'Lies AGENTS.md und skills/beamng-herausforderung/SKILL.md. '
+                                      'Die grafische Eingabe ist abgeschlossen; öffne sie nicht erneut. '
+                                      'Prüfe die Anforderungen und frage bei wesentlichen Lücken nach. '
+                                      'Beachte den Schreibschutz der Spielinstallation.\n\n'
+                                      + json.dumps(result, ensure_ascii=False, indent=2))
+                            state['result'] = result
+                            self.send(200, {'ok': True, 'manual': True, 'prompt': prompt})
+                            return
                         state['result'] = result
                         self.send(200, {'ok': True})
                         threading.Thread(target=self.server.shutdown, daemon=True).start()
@@ -166,17 +178,19 @@ def main():
 
     with ThreadingHTTPServer(('127.0.0.1', 0), Handler) as server:
         url = f'http://127.0.0.1:{server.server_port}/{token}/'
-        print('EINGABEFENSTER=' + url, flush=True)
+        if sys.stdout is not None:
+            print('EINGABEFENSTER=' + url, flush=True)
         if not args.no_browser:
             webbrowser.open(url)
         try:
             server.serve_forever(poll_interval=0.2)
         except KeyboardInterrupt:
             pass
-    if state['result']:
+    if state['result'] and not args.standalone:
         print('BEAMNG_REQUEST=' + json.dumps(state['result'], ensure_ascii=True), flush=True)
         return 0
-    print('Eingabe abgebrochen.', flush=True)
+    if sys.stdout is not None:
+        print('Eingabe abgebrochen.', flush=True)
     return 2
 
 

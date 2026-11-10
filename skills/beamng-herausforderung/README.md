@@ -6,16 +6,20 @@ Voraussetzungen: lokales Repository, BeamNG.drive, Python **3.10 oder neuer**,
 ein Browser und ein KI-Agent mit Zugriff auf lokale Programme und Dateien.
 Keine Python-Zusatzpakete, Cloud-Dienste oder API-Schlüssel erforderlich.
 
-Schreibe im KI-Chat:
-
-> Lies `skills/beamng-herausforderung/SKILL.md` und entwickle mit diesem Skill eine neue Herausforderung.
+Starte im Windows-Explorer **Herausforderung starten.vbs** in diesem Ordner
+per Doppelklick. Die Maske öffnet sich im Browser und funktioniert unabhängig
+von einem laufenden Chat. Nach der Eingabe bereitet die Maske einen Auftrag
+vor. Das automatische Erstellen eines Chats ist noch nicht angebunden: Den
+Auftrag kopieren und in einen neuen Codex-Chat dieses Projekts einfügen.
+Die Eingabe selbst startet keinen KI-Lauf. `assets/index.html` nicht direkt öffnen.
 
 Die AGENTS.md verweist ebenfalls darauf. Bei Plattformen mit Skill-Verwaltung
 kann der Ordner nach deren Vorgaben registriert werden; die automatische
 Entdeckung im Verzeichnis `skills/` wird nicht für jede Plattform garantiert.
 Die mitgelieferte `agents/openai.yaml` beschreibt den Skill für kompatible UIs.
 
-Der Agent startet aus dem Repository:
+Für die alternative Nutzung mit einem bereits wartenden Agenten kann dieser
+aus dem Repository starten:
 
 ```powershell
 python -B skills/beamng-herausforderung/scripts/wizard.py
@@ -28,18 +32,24 @@ Im externen Browserfenster:
    des aktiven BeamNG-Benutzerordners. Diese werden ebenfalls gespeichert.
 3. Karte und kategorisierte Vorlage auswählen.
 4. Namen, Ablauf und gewünschte Änderungen beschreiben.
-5. Übersicht prüfen und **Entwicklung starten** wählen.
+5. Übersicht prüfen und **Auftrag vorbereiten** wählen.
 
-Die KI übernimmt die Angaben aus dem laufenden Prozess, formuliert ihren
-Umsetzungsauftrag und entwickelt im Feature-Branch. Die Eingabemaske ruft
-selbst kein KI-Modell auf. Bei manueller Ausführung fehlt dieser wartende Agent;
-das JSON-Ergebnis muss dann einem Agenten übergeben werden.
+Die Maske erstellt keinen Codex-Chat und führt den Auftrag nicht selbst aus.
+Die kopierten Angaben sind erst nach dem Einfügen und Absenden im Chat an
+Codex übergeben. Das Fenster offen lassen, bis der Auftrag kopiert wurde.
 
 **Abbrechen** beendet die Sitzung ohne Entwicklungsauftrag. Nur das Fenster zu
 schließen beendet den wartenden Prozess nicht: URL erneut öffnen und abbrechen
 oder den Agenten bitten, den Prozess zu stoppen. `Strg+C` bricht ebenfalls ab.
 Falls kein Browser startet, öffne die ausgegebene lokale URL. Mit `--no-browser`
 kann der automatische Browserstart unterdrückt werden.
+
+Wenn die Verbindung im Browser unterbrochen ist (zum Beispiel nach dem Beenden
+der zugehörigen lokalen Sitzung), starte den Skill im KI-Chat erneut und
+verwende das neu geöffnete Fenster oder den neuen Link. Ein älteres Fenster
+ist nicht automatisch mit der neuen Sitzung verbunden. Der zuvor gespeicherte
+Installationspfad wird beim Neustart erneut geladen; eine erneute Eingabe ist
+nur bei ungültigem Pfad oder einer bewussten Änderung nötig.
 
 ## Einstellungen und Daten
 

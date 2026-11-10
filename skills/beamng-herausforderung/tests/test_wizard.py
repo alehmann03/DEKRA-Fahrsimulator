@@ -86,6 +86,27 @@ class WizardTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate_request({**data, **change}, cat, self.project)
 
+    def test_standalone_prepares_prompt_without_starting_codex(self):
+        env = {**os.environ, 'LOCALAPPDATA': str(self.root / 'local'),
+               'PYTHONIOENCODING': 'utf-8', 'PATH': ''}
+        process = subprocess.Popen([sys.executable, '-B', str(SCRIPTS / 'wizard.py'), '--no-browser', '--standalone'],
+                                   stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', env=env)
+        self.addCleanup(lambda: process.kill() if process.poll() is None else None)
+        url = process.stdout.readline().strip().split('=', 1)[1]
+        def post(route, data):
+            request = urllib.request.Request(url + route, json.dumps(data).encode(),
+                                             {'Content-Type': 'application/json'})
+            with urllib.request.urlopen(request, timeout=30) as response:
+                return json.load(response)
+        catalog = post('scan', {'install': str(self.install), 'mods': []})
+        self.assertTrue(catalog['missions'])
+        result = post('submit', self.data(catalog))
+        self.assertTrue(result['manual'])
+        self.assertIn('011-Highway', result['prompt'])
+        self.assertTrue(post('cancel', {})['ok'])
+        process.communicate(timeout=10)
+        self.assertEqual(process.returncode, 2)
+
     def test_http_handoff_and_origin_rejection(self):
         before = self.fingerprint()
         env = {**os.environ, 'LOCALAPPDATA': str(self.root / 'local'), 'PYTHONIOENCODING': 'utf-8'}
@@ -108,6 +129,21 @@ class WizardTests(unittest.TestCase):
         self.assertEqual(process.returncode, 0, errors)
         result = json.loads(output.split('BEAMNG_REQUEST=', 1)[1])
         self.assertEqual(result['scenario']['name'], 'Neue Mission')
+        self.assertEqual(before, self.fingerprint())
+
+        # A new session must reuse the saved path, independently of the old URL.
+        second = subprocess.Popen([sys.executable, '-B', str(SCRIPTS / 'wizard.py'), '--no-browser'],
+                                  stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding='utf-8', env=env)
+        self.addCleanup(lambda: second.kill() if second.poll() is None else None)
+        url = second.stdout.readline().strip().split('=', 1)[1]
+        with urllib.request.urlopen(url + 'settings', timeout=10) as response:
+            saved = json.load(response)
+        self.assertEqual(Path(saved['install']), self.install)
+        second_catalog = post('scan', saved)
+        self.assertTrue(any(m['name'] == '011-Highway' for m in second_catalog['missions']))
+        self.assertTrue(post('cancel', {})['ok'])
+        second.communicate(timeout=10)
+        self.assertEqual(second.returncode, 2)
         self.assertEqual(before, self.fingerprint())
 
 

@@ -1,4 +1,4 @@
--- Category preview; keep this mission's own preview for its detail screen.
+-- Group this mission with the other DEKRA challenges and retain its individual preview.
 return function()
-  return {defaultPreviewFile = "/gameplay/dekra/kategorie.png"}
+  return {missionTypeLabel = "DEKRA", defaultPreviewFile = "/gameplay/dekra/kategorie.png"}
 end
