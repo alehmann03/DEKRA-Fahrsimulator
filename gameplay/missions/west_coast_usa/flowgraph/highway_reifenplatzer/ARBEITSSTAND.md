@@ -1,0 +1,7 @@
+# Highway – Reifenplatzer
+
+Die Mission nutzt die Strecke und Ressourcen aus 011-Highway und den lokalen Zeitrennen-Flowgraph nach dem Muster des ABS-Vergleichs. Während des aktiven Rennens wird die tatsächliche Geschwindigkeit des Spielerfahrzeugs pro Simulationsschritt geprüft. Nach mehr als fünf ununterbrochenen Simulationssekunden über 130 km/h wird einmalig `beamstate.deflateTire` aufgerufen. Bei 130 km/h oder weniger beginnt die Zeitmessung erneut. Bei Fahrzeugwechsel oder Fahrzeugverlust wird die Mission abgebrochen.
+
+Die Fahrzeug-Lua-Routine ermittelt das Rad anhand der Radpositionen relativ zur Fahrzeugrichtung und prüft, ob eine Druckgruppe existiert. Nicht unterstützte oder ungewöhnliche Radkonfigurationen werden gemeldet. Die Auswahl erfolgt zum Auslösezeitpunkt und kann bei stark verformten oder ungewöhnlichen Fahrzeugen scheitern. Die Messung erfolgt mit der Simulationsschrittweite des Flowgraphs; sehr kurze Geschwindigkeitsänderungen zwischen zwei Messungen sind nicht erfassbar.
+
+**Teststatus:** Noch kein Spieltest durchgeführt. Zu prüfen sind Missionsanzeige, Start und Ziel, Countdown, Fahrgeschwindigkeiten knapp unter, bei und über 130 km/h, Unterbrechung vor fünf Sekunden, Auslösung nach mehr als fünf Sekunden, Reifen vorne links bei mehreren Fahrzeugen, Abbruch, Fahrzeugwechsel, Recovery und Neustart. Die korrekte Wirkung der Reifenschadenfunktion und die Integration im Spiel sind erst nach einem erfolgreichen Spieltest bestätigt.
