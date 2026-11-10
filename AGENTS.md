@@ -17,6 +17,7 @@ Diese Zuordnung gilt für das gesamte Projekt. Beachte bei konkreten Aufgaben ab
 
 - Herausforderungen liegen unter `gameplay/missions/<Karte>/flowgraph/<Name_der_Herausforderung>/` im Projektordner, zum Beispiel unter `gameplay/missions/west_coast_usa/flowgraph/`.
 - Neue Herausforderungen entsprechend der zugehörigen Karte und Kategorie anlegen und konfigurieren, sodass sie in der jeweiligen Karte und in der Seitenansicht der Spielkarte unter der passenden Kategorie erscheinen.
+- Alle neuen DEKRA-Herausforderungen für die gemeinsame DEKRA-Kachel in der Gameplay-Wahl kennzeichnen: `missionTypeLabel` in der jeweiligen `info.json` auf `DEKRA` setzen, ohne den für die Mission benötigten `missionType` oder bestehende Missions-IDs zu ändern. Die gemeinsame Kachelvorschau `/gameplay/dekra/kategorie.png` über den missionsspezifischen Konstruktor als `defaultPreviewFile` verwenden; vorhandene Konstruktorlogik und individuelle Missionsvorschauen erhalten. Die Anzeige und den Start im Spiel prüfen und einen nicht durchgeführten Spieltest ausdrücklich nennen.
 
 # Git-Arbeitsweise
 

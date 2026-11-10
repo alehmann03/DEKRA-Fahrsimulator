@@ -54,8 +54,18 @@ Du bist der wartende Agent und führst den nächsten Schritt selbst aus.
 5. Verwende `gameplay/missions/<map>/flowgraph/<slug>/` im Repository.
    Vorhandene Kartenordner weiterverwenden, fehlende anlegen. Bei Kollision
    einen neuen Namen klären; bestehende Missionen nicht überschreiben.
+   Kennzeichne jede neue DEKRA-Herausforderung in `info.json` mit
+   `missionTypeLabel: "DEKRA"`; behalte den zur Vorlage passenden technischen
+   `missionType` bei. Setze im missionsspezifischen `constructor.lua` das
+   Feld `defaultPreviewFile` auf `/gameplay/dekra/kategorie.png`. Integriere
+   das Feld in vorhandene Konstruktoren, ohne deren Verhalten zu überschreiben;
+   ändere keine einzelnen Missionsvorschaubilder. Fehlt das gemeinsame Bild
+   oder der Mechanismus funktioniert in der verwendeten Spielversion nicht,
+   weise darauf hin und prüfe eine geeignete Lösung, statt Erfolg anzunehmen.
 6. Prüfe die tatsächliche Missionserkennung und Kategorisierung anhand der
-   vorhandenen BeamNG-Daten, nicht nur anhand des Ordnernamens. Implementiere
+   vorhandenen BeamNG-Daten, nicht nur anhand des Ordnernamens. Prüfe im Spiel
+   insbesondere die DEKRA-Kachel, die gemeinsame Vorschau und den Missionsstart.
+   Wenn ein Spieltest nicht möglich ist, melde ihn ausdrücklich als offen. Implementiere
    und prüfe sinnvolle JSON-, Ressourcen- und Lua-Prüfungen. Berichtige Fehler.
 7. Berichte Ergebnis, durchgeführte Prüfungen und verbleibende Spieltests.
    Kein Spieltest ohne Durchführung behaupten. Kein Commit, Push oder Merge
