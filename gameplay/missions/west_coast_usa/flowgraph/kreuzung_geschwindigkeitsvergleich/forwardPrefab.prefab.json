@@ -1,0 +1,3 @@
+{"name":"SimGroup_1","class":"SimGroup","groupPosition":"0 0 0"}
+{"class":"TSStatic","persistentId":"4375422f-67a0-4fe1-9afd-9f265d8a56ce","__parent":"SimGroup_1","position":[8.15145302,677.089783,74.8982239],"isRenderEnabled":false,"mode":"Ignore","parent":"city_race_2_unpacked","rotationMatrix":[-1,-1.40070949e-06,0,1.40070949e-06,-1,0,0,0,1],"shapeName":"/levels/west_coast_usa/art/shapes/race/sign_finish.dae"}
+{"class":"TSStatic","persistentId":"232091f2-100d-437e-82a4-d5050430ca98","__parent":"SimGroup_1","position":[25.8642311,676.873413,74.8982239],"isRenderEnabled":false,"mode":"Ignore","parent":"city_race_2_unpacked","rotationMatrix":[-1,-1.40070949e-06,0,1.40070949e-06,-1,0,0,0,1],"shapeName":"/levels/west_coast_usa/art/shapes/race/sign_finish.dae"}

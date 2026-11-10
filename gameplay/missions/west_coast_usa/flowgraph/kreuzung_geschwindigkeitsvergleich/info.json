@@ -1,0 +1,149 @@
+{
+  "additionalAttributes": {},
+  "author": "DEKRA",
+  "careerSetup": {
+    "defaultStarKeys": [
+      "lapTime1",
+      "lapTime2",
+      "lapTime3",
+      "lapTime4",
+      "lapTime5"
+    ],
+    "showInFreeroam": true,
+    "skill": "(none)",
+    "starOutroTexts": {},
+    "starRewards": {},
+    "starsActive": {
+      "lapTime1": true,
+      "lapTime2": true,
+      "lapTime3": true,
+      "lapTime4": true,
+      "lapTime5": true
+    },
+    "showInCareer": false
+  },
+  "customAdditionalAttributes": {},
+  "date": 1691416614,
+  "description": "Demonstration: Querverkehr an einer Kreuzung. Vergleiche die Annäherung mit 50 und 80 km/h. Abstimmung und Spieltest stehen noch aus.",
+  "devMission": false,
+  "grouping": {
+    "id": "",
+    "label": ""
+  },
+  "layers": [
+    {
+      "dir": "/gameplay/missions/west_coast_usa/flowgraph/kreuzung_geschwindigkeitsvergleich/",
+      "fixed": true,
+      "isMissionFolderDir": true,
+      "isMissionTypeDir": false
+    },
+    {
+      "dir": "/gameplay/missionTypes/timeTrial/",
+      "fixed": true,
+      "isMissionFolderDir": false,
+      "isMissionTypeDir": true
+    }
+  ],
+  "missionType": "timeTrial",
+  "missionTypeData": {
+    "allowFlip": true,
+    "allowRecover": false,
+    "allowRollingStart": false,
+    "bronze1Laps": -1,
+    "bronze2Laps": -1,
+    "bronze3Laps": -1,
+    "bronzeDynamicLapTimeBase": 10,
+    "bronzeDynamicLapTimePerLap": 40,
+    "bronzeTime": 180,
+    "bronzeTime2": 175,
+    "bronzeTime3": 170,
+    "bronzeTimePenalty": 20,
+    "bronzeTimeTotal": 180,
+    "canChangeLapAmount": false,
+    "closed": true,
+    "defaultLaps": 1,
+    "dynamicRewardsExponentForLaps": 1,
+    "flipLimit": -1,
+    "flipPenalty": 5,
+    "gold1Laps": -1,
+    "gold2Laps": -1,
+    "gold3Laps": -1,
+    "goldDynamicLapTimeBase": 6,
+    "goldDynamicLapTimePerLap": 30,
+    "goldTime": 60,
+    "goldTime2": 55,
+    "goldTime3": 50,
+    "goldTimePenalty": 0,
+    "goldTimeTotal": 60,
+    "justFinishPenalty": 30,
+    "lapTime1": 120,
+    "lapTime2": 105,
+    "lapTime3": 96,
+    "lapTime4": 92,
+    "lapTime5": 90,
+    "mapPreviewMode": "navgraph",
+    "recoverLimit": -1,
+    "recoverPenalty": 5,
+    "reversible": false,
+    "silver1Laps": -1,
+    "silver2Laps": -1,
+    "silver3Laps": -1,
+    "silverDynamicLapTimeBase": 8,
+    "silverDynamicLapTimePerLap": 35,
+    "silverTime": 120,
+    "silverTime2": 115,
+    "silverTime3": 110,
+    "silverTimePenalty": 10,
+    "silverTimeTotal": 120,
+    "startScreenText": "",
+    "customFlowgraph": true
+  },
+  "name": "Kreuzung – Geschwindigkeitsvergleich",
+  "retryBehaviour": "infiniteRetries",
+  "setupModules": {
+    "environment": {
+      "cloudCover": 0.7055999679565536,
+      "cloudWindSpeed": 0.30000001192093,
+      "enabled": true,
+      "fogDensity": 0.0008,
+      "time": -1,
+      "timeScale": 0,
+      "todUserSetting": true,
+      "weatherUserSetting": false,
+      "windDirAngle": 0,
+      "windSpeed": 0
+    },
+    "traffic": {
+      "enabled": false
+    },
+    "vehicles": {
+      "enabled": true,
+      "includePlayerVehicle": true,
+      "playerVehicleDiffs": {},
+      "prioritizePlayerVehicle": true,
+      "vehicles": {}
+    }
+  },
+  "startCondition": {
+    "type": "automatic"
+  },
+  "startTrigger": {
+    "level": "west_coast_usa",
+    "pos": [
+      49.54389191,
+      665.927002,
+      74.72003174
+    ],
+    "radius": 4,
+    "rot": [
+      1.20660394e-08,
+      6.67732368e-07,
+      0.9998367744,
+      -0.01806722348
+    ],
+    "type": "coordinates"
+  },
+  "visibleCondition": {
+    "type": "always"
+  }
+}
