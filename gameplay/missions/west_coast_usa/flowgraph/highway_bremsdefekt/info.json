@@ -1,0 +1,157 @@
+{
+  "additionalAttributes": {},
+  "author": "DEKRA",
+  "careerSetup": {
+    "defaultStarKeys": [
+      "bronzeTime",
+      "bronzeTime2",
+      "bronzeTime3",
+      "silverTime",
+      "silverTime2",
+      "silverTime3",
+      "goldTime",
+      "goldTime2",
+      "goldTime3"
+    ],
+    "showInFreeroam": true,
+    "skill": "(none)",
+    "starOutroTexts": {},
+    "starRewards": {},
+    "starsActive": {
+      "bronzeTime": true,
+      "bronzeTime2": true,
+      "bronzeTime3": true,
+      "goldTime": true,
+      "goldTime2": true,
+      "goldTime3": true,
+      "silverTime": true,
+      "silverTime2": true,
+      "silverTime3": true
+    },
+    "showInCareer": false
+  },
+  "customAdditionalAttributes": {},
+  "date": 1691419276,
+  "description": "Demonstration: Nach mehr als fünf Sekunden über 130 km/h blockiert künstlich die Bremse vorne links. Dieses Szenario ist keine Darstellung eines typischen Bremsdefekts.",
+  "devMission": false,
+  "grouping": {
+    "id": "",
+    "label": ""
+  },
+  "layers": [
+    {
+      "dir": "/gameplay/missions/west_coast_usa/flowgraph/highway_bremsdefekt/",
+      "fixed": true,
+      "isMissionFolderDir": true,
+      "isMissionTypeDir": false
+    },
+    {
+      "dir": "/gameplay/missionTypes/timeTrial/",
+      "fixed": true,
+      "isMissionFolderDir": false,
+      "isMissionTypeDir": true
+    }
+  ],
+  "missionType": "timeTrial",
+  "missionTypeData": {
+    "allowFlip": true,
+    "allowRecover": true,
+    "allowRollingStart": false,
+    "bronze1Laps": -1,
+    "bronze2Laps": -1,
+    "bronze3Laps": -1,
+    "bronzeDynamicLapTimeBase": 10,
+    "bronzeDynamicLapTimePerLap": 40,
+    "bronzeTime": 42,
+    "bronzeTime2": 37,
+    "bronzeTime3": 33,
+    "bronzeTimePenalty": 20,
+    "bronzeTimeTotal": 180,
+    "canChangeLapAmount": false,
+    "closed": false,
+    "defaultLaps": 1,
+    "dynamicRewardsExponentForLaps": 1,
+    "flipLimit": -1,
+    "flipPenalty": 5,
+    "gold1Laps": -1,
+    "gold2Laps": -1,
+    "gold3Laps": -1,
+    "goldDynamicLapTimeBase": 6,
+    "goldDynamicLapTimePerLap": 30,
+    "goldTime": 24.39999962,
+    "goldTime2": 23.5,
+    "goldTime3": 23,
+    "goldTimePenalty": 0,
+    "goldTimeTotal": 60,
+    "justFinishPenalty": 30,
+    "lapTime1": 55,
+    "lapTime2": 50,
+    "lapTime3": 45,
+    "lapTime4": 40,
+    "lapTime5": 35,
+    "mapPreviewMode": "navgraph",
+    "recoverLimit": -1,
+    "recoverPenalty": 5,
+    "reversible": false,
+    "silver1Laps": -1,
+    "silver2Laps": -1,
+    "silver3Laps": -1,
+    "silverDynamicLapTimeBase": 8,
+    "silverDynamicLapTimePerLap": 35,
+    "silverTime": 30,
+    "silverTime2": 27.29999924,
+    "silverTime3": 25.5,
+    "silverTimePenalty": 10,
+    "silverTimeTotal": 120,
+    "startScreenText": "",
+    "customFlowgraph": true
+  },
+  "name": "Highway – Bremsdefekt",
+  "retryBehaviour": "infiniteRetries",
+  "setupModules": {
+    "environment": {
+      "cloudCover": 0.7392000160217231,
+      "cloudWindSpeed": 0.30000001192093,
+      "enabled": true,
+      "fogDensity": 0.0008,
+      "time": -1,
+      "timeScale": 0,
+      "todUserSetting": true,
+      "weatherUserSetting": false,
+      "windDirAngle": 0,
+      "windSpeed": 0
+    },
+    "traffic": {
+      "enabled": false
+    },
+    "vehicles": {
+      "enabled": true,
+      "includePlayerVehicle": true,
+      "playerVehicleDiffs": {},
+      "prioritizePlayerVehicle": true,
+      "vehicles": {}
+    }
+  },
+  "startCondition": {
+    "type": "automatic"
+  },
+  "startTrigger": {
+    "level": "west_coast_usa",
+    "pos": [
+      -900.7391357,
+      -553.0967407,
+      106.3001785
+    ],
+    "radius": 3,
+    "rot": [
+      0.02155616303,
+      0.04239397156,
+      0.2627852392,
+      0.9636814832
+    ],
+    "type": "coordinates"
+  },
+  "visibleCondition": {
+    "type": "always"
+  }
+}
