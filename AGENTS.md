@@ -24,3 +24,8 @@ Diese Zuordnung gilt für das gesamte Projekt. Beachte bei konkreten Aufgaben ab
 - Commits erfolgen auf Aufforderung des Nutzers.
 - Fertige Branches auf Anweisung des Nutzers in `main` mit einem eigenen Merge-Commit zusammenführen (`git merge --no-ff`), auch wenn ein Fast-Forward möglich wäre. So bleibt die Verzweigung in der Historie sichtbar.
 - Pushes erfolgen nur auf ausdrückliche Anweisung des Nutzers.
+
+# Projekt-Skill
+
+- Für die geführte Entwicklung einer neuen Herausforderung nutze `skills/beamng-herausforderung/SKILL.md`. Der Skill startet eine lokale Browser-Eingabemaske für Karte, Vorlage und Szenariobeschreibung.
+- Bei KI-Plattformen ohne automatische Skill-Erkennung die genannte Datei ausdrücklich lesen. Einrichtung und technische Voraussetzungen stehen in `skills/beamng-herausforderung/README.md`.

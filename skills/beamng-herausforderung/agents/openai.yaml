@@ -1,0 +1,4 @@
+interface:
+  display_name: "Neue BeamNG-Herausforderung"
+  short_description: "Karte und Vorlage wählen, Szenario entwickeln"
+  default_prompt: "Nutze $beamng-herausforderung, um eine neue Herausforderung zu entwickeln."
