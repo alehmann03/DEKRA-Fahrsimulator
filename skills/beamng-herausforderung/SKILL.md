@@ -9,7 +9,19 @@ Lies zuerst die geltende AGENTS.md. Die gesamte Spielinstallation ist strikt
 schreibgeschützt zu behandeln, einschließlich Archive. Die Oberfläche liest
 Spielinhalte; Änderungen an Missionen erfolgen nur im Projekt.
 
-## Eingabe starten
+## Eigenständige Eingabe
+
+Die Person startet `Herausforderung starten.vbs` im Skill-Ordner per Explorer.
+Die Eingabemaske läuft unabhängig vom Chat und bereitet den Auftrag zur Übergabe
+vor. Das automatische Anlegen eines App-Chats ist noch nicht angebunden; der
+Auftrag muss in einen neuen Codex-Chat des Projekts eingefügt werden.
+Nicht behaupten, dass ein KI-Lauf gestartet oder ein Chat erstellt wurde.
+Voraussetzungen stehen in README.md.
+
+Wenn bereits strukturierte Eingaben aus der Maske vorliegen, öffne die Maske
+nicht erneut, sondern beginne mit „Umsetzung“.
+
+## Alternative: Eingabe im laufenden Chat
 
 Ermittle den Repositorypfad und starte aus ihm mit Python 3.10 oder neuer:
 
@@ -23,6 +35,14 @@ die Eingabe ausfüllt. Warte in begrenzten Abständen auf seinen Abschluss;
 interpretiere Wartezeit niemals als Zustimmung. Falls sich kein Browser öffnet,
 zeige die ausgegebene URL. Bei Abbruch (Exitcode 2) keine Umsetzung starten.
 Bei Fehlern keine alten Eingaben verwenden.
+Die `assets/index.html` darf nicht direkt per Dateipfad geöffnet werden: Sie
+benötigt den lokalen Assistenten. Nutze ausschließlich das vom laufenden
+Prozess geöffnete Fenster bzw. dessen `http://127.0.0.1:`-URL.
+Nach einer Unterbrechung der KI-Sitzung darf ein altes Browserfenster nicht
+als aktive Übergabe behandelt werden. Starte für einen erneuten Aufruf einen
+neuen Assistenten und weise auf dessen neu geöffnetes Fenster bzw. seine URL
+hin; ein noch sichtbares älteres Fenster kann nicht an den neuen Prozess
+übergeben. Den gespeicherten Installationspfad wiederverwenden.
 
 Die komplette Eingabe einschließlich Installationspfad und optionaler
 Mod-Verzeichnisse findet im Fenster statt. Einstellungen werden außerhalb
